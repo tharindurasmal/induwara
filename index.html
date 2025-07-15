@@ -6,47 +6,70 @@
 <title>Bike & Car Availability | Contact via WhatsApp</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 <style>
-  /* Reset & base */
-  * {
-    box-sizing: border-box;
-  }
+  /* Reset and base */
   body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(135deg, #ff4e50, #f9d423);
     color: #fff;
     min-height: 100vh;
+    padding: 40px 20px;
+    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 40px 20px;
   }
+
+  header {
+    max-width: 480px;
+    width: 100%;
+    margin-bottom: 50px;
+  }
+
   h1 {
     font-weight: 600;
     font-size: 2.8rem;
-    margin-bottom: 0.2rem;
+    margin-bottom: 15px;
     text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
-    text-align: center;
   }
+
+  /* Customer photo */
+  .customer-photo {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #fff;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    margin: 0 auto 20px auto;
+    animation: photoFadeIn 1.5s ease forwards;
+    opacity: 0;
+    display: block;
+  }
+
+  @keyframes photoFadeIn {
+    to { opacity: 1; }
+  }
+
   p.subtitle {
     font-weight: 400;
-    font-size: 1.1rem;
-    margin-bottom: 40px;
+    font-size: 1.15rem;
     letter-spacing: 0.05em;
-    text-align: center;
+    margin-top: 0;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
   }
 
-  /* Schedule cards container */
+  /* Schedule container */
   .schedule-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 25px;
     max-width: 960px;
-    margin-bottom: 50px;
     width: 100%;
+    margin-bottom: 50px;
   }
+
   .day-card {
     background: #fff;
     color: #ff4e50;
@@ -59,18 +82,22 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   .day-card:hover {
-    transform: translateY(-12px);
+    transform: translateY(-12px) scale(1.05);
     box-shadow: 0 25px 40px rgba(255,78,80,0.5);
   }
+
   .bike-icon {
     font-size: 60px;
     margin-bottom: 15px;
+    animation: pulseIcon 2.5s infinite ease-in-out;
   }
+
   .day-card h3 {
     margin: 0 0 12px 0;
     font-size: 1.8rem;
     font-weight: 600;
   }
+
   .time-slot {
     display: inline-block;
     background-color: #ff4e50;
@@ -81,12 +108,14 @@
     font-size: 1.1rem;
     box-shadow: 0 5px 15px rgba(255,78,80,0.5);
     user-select: none;
+    transition: background-color 0.3s;
   }
+
   .time-slot:hover {
     background-color: #d6393a;
   }
 
-  /* WhatsApp form */
+  /* Form styling */
   form {
     background: rgba(255,255,255,0.95);
     color: #333;
@@ -95,13 +124,17 @@
     border-radius: 20px;
     padding: 30px 25px;
     box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    margin-bottom: 50px;
+    text-align: left;
   }
+
   label {
     display: block;
     font-weight: 600;
     font-size: 1.1rem;
     margin-bottom: 12px;
   }
+
   textarea {
     width: 100%;
     min-height: 100px;
@@ -112,12 +145,17 @@
     resize: vertical;
     font-family: 'Poppins', sans-serif;
     transition: border-color 0.3s ease;
+    box-sizing: border-box;        /* Fix padding inside width */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
   }
+
   textarea:focus {
     outline: none;
     border-color: #ff4e50;
     box-shadow: 0 0 10px rgba(255,78,80,0.5);
   }
+
   button {
     margin-top: 20px;
     width: 100%;
@@ -132,74 +170,90 @@
     box-shadow: 0 8px 20px rgba(37,211,102,0.6);
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
   }
+
   button:hover {
     background-color: #1ebe57;
     box-shadow: 0 10px 30px rgba(30,190,85,0.8);
   }
 
-  /* Footer */
   footer {
-    margin-top: 50px;
     font-size: 0.9rem;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
     user-select: none;
+    text-align: center;
+    margin-bottom: 30px;
   }
 
-  /* Responsive */
   @media(max-width: 600px) {
     .schedule-container {
       flex-direction: column;
       align-items: center;
     }
   }
+
+  @keyframes pulseIcon {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
 </style>
 </head>
 <body>
 
+<header>
   <h1>Bike & Car Availability Schedule</h1>
+
+  <!-- Customer photo display -->
+  <img
+    src="Capture.png"
+    alt="Customer Photo"
+    class="customer-photo"
+  />
+
   <p class="subtitle">Departure at 7:00 AM | Return at 5:00 PM — Only on Wednesday, Thursday & Friday</p>
+</header>
 
-  <div class="schedule-container" aria-label="Schedule Days and Times">
-    <div class="day-card" tabindex="0" aria-labelledby="wed-title" role="region">
-      <div class="bike-icon" aria-hidden="true">🏍️🚗</div>
-      <h3 id="wed-title">Wednesday</h3>
-      <div class="time-slot" aria-label="Available from 7 AM to 4 PM">7:00 AM - 4:00 PM</div>
-    </div>
-
-    <div class="day-card" tabindex="0" aria-labelledby="thu-title" role="region">
-      <div class="bike-icon" aria-hidden="true">🏍️🚗</div>
-      <h3 id="thu-title">Thursday</h3>
-      <div class="time-slot" aria-label="Available from 7 AM to 5 PM">7:00 AM - 5:00 PM</div>
-    </div>
-
-    <div class="day-card" tabindex="0" aria-labelledby="fri-title" role="region">
-      <div class="bike-icon" aria-hidden="true">🏍️🚗</div>
-      <h3 id="fri-title">Friday</h3>
-      <div class="time-slot" aria-label="Available from 7 AM to 4 PM">7:00 AM - 4:00 PM</div>
-    </div>
+<div class="schedule-container" aria-label="Schedule Days and Times">
+  <div class="day-card" tabindex="0" aria-labelledby="wed-title" role="region">
+    <div class="bike-icon" aria-hidden="true">🏍️🚗</div>
+    <h3 id="wed-title">Wednesday</h3>
+    <div class="time-slot" aria-label="Available from 7 AM to 4 PM">7:00 AM - 4:00 PM</div>
   </div>
+  <div class="day-card" tabindex="0" aria-labelledby="thu-title" role="region">
+    <div class="bike-icon" aria-hidden="true">🏍️🚗</div>
+    <h3 id="thu-title">Thursday</h3>
+    <div class="time-slot" aria-label="Available from 7 AM to 5 PM">7:00 AM - 5:00 PM</div>
+  </div>
+  <div class="day-card" tabindex="0" aria-labelledby="fri-title" role="region">
+    <div class="bike-icon" aria-hidden="true">🏍️🚗</div>
+    <h3 id="fri-title">Friday</h3>
+    <div class="time-slot" aria-label="Available from 7 AM to 4 PM">7:00 AM - 4:00 PM</div>
+  </div>
+</div>
 
-  <form id="whatsappForm" aria-label="Send message via WhatsApp">
-    <label for="message">Send us a message on WhatsApp:</label>
-    <textarea id="message" placeholder="Type your message here..." required></textarea>
-    <button type="submit" aria-label="Send WhatsApp message">Send via WhatsApp</button>
-  </form>
+<form id="whatsappForm" aria-label="Send message via WhatsApp">
+  <label for="message">Send us a message on WhatsApp:</label>
+  <textarea id="message" placeholder="Type your message here..." required></textarea>
+  <button type="submit" aria-label="Send WhatsApp message">Send via WhatsApp</button>
+</form>
 
+<footer>
+  &copy; 2025 Bike & Car Service | WhatsApp: +94771234567
+</footer>
 
-
-  <script>
-    document.getElementById('whatsappForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const message = encodeURIComponent(document.getElementById('message').value.trim());
-      const phoneNumber = '94771234567'; // Your WhatsApp number here without "+" or spaces
-      if(!message) {
-        alert('Please enter a message before sending.');
-        return;
-      }
-      const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
-      window.open(whatsappURL, '_blank', 'noopener');
-    });
-  </script>
+<script>
+  document.getElementById('whatsappForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const messageText = document.getElementById('message').value.trim();
+    if (!messageText) {
+      alert('Please enter a message before sending.');
+      return;
+    }
+    const phoneNumber = '94772801487';
+    const encodedMessage = encodeURIComponent(messageText + "\n\n(Please attach your photo manually after opening WhatsApp.)");
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+    window.open(whatsappURL, '_blank', 'noopener');
+  });
+</script>
 
 </body>
 </html>
