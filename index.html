@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bike & Car Availability | Contact via WhatsApp</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+<style>
+  /* Reset & base */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ff4e50, #f9d423);
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+  }
+  h1 {
+    font-weight: 600;
+    font-size: 2.8rem;
+    margin-bottom: 0.2rem;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+    text-align: center;
+  }
+  p.subtitle {
+    font-weight: 400;
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    letter-spacing: 0.05em;
+    text-align: center;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+  }
+
+  /* Schedule cards container */
+  .schedule-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    max-width: 960px;
+    margin-bottom: 50px;
+    width: 100%;
+  }
+  .day-card {
+    background: #fff;
+    color: #ff4e50;
+    width: 260px;
+    padding: 30px 25px;
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(255,78,80,0.3);
+    text-align: center;
+    cursor: default;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .day-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 25px 40px rgba(255,78,80,0.5);
+  }
+  .bike-icon {
+    font-size: 60px;
+    margin-bottom: 15px;
+  }
+  .day-card h3 {
+    margin: 0 0 12px 0;
+    font-size: 1.8rem;
+    font-weight: 600;
+  }
+  .time-slot {
+    display: inline-block;
+    background-color: #ff4e50;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 40px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    box-shadow: 0 5px 15px rgba(255,78,80,0.5);
+    user-select: none;
+  }
+  .time-slot:hover {
+    background-color: #d6393a;
+  }
+
+  /* WhatsApp form */
+  form {
+    background: rgba(255,255,255,0.95);
+    color: #333;
+    max-width: 420px;
+    width: 100%;
+    border-radius: 20px;
+    padding: 30px 25px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+  }
+  label {
+    display: block;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+  }
+  textarea {
+    width: 100%;
+    min-height: 100px;
+    border-radius: 15px;
+    border: 2px solid #ccc;
+    padding: 15px 20px;
+    font-size: 1rem;
+    resize: vertical;
+    font-family: 'Poppins', sans-serif;
+    transition: border-color 0.3s ease;
+  }
+  textarea:focus {
+    outline: none;
+    border-color: #ff4e50;
+    box-shadow: 0 0 10px rgba(255,78,80,0.5);
+  }
+  button {
+    margin-top: 20px;
+    width: 100%;
+    background-color: #25d366;
+    color: white;
+    border: none;
+    font-weight: 700;
+    font-size: 1.25rem;
+    padding: 15px;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(37,211,102,0.6);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  button:hover {
+    background-color: #1ebe57;
+    box-shadow: 0 10px 30px rgba(30,190,85,0.8);
+  }
+
+  /* Footer */
+  footer {
+    margin-top: 50px;
+    font-size: 0.9rem;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+    user-select: none;
+  }
+
+  /* Responsive */
+  @media(max-width: 600px) {
+    .schedule-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <h1>Bike & Car Availability Schedule</h1>
+  <p class="subtitle">Departure at 7:00 AM | Return at 5:00 PM — Only on Wednesday, Thursday & Friday</p>
+
+  <div class="schedule-container" aria-label="Schedule Days and Times">
+    <div class="day-card" tabindex="0" aria-labelledby="wed-title" role="region">
+      <div class="bike-icon" aria-hidden="true">🏍️🚗</div>
+      <h3 id="wed-title">Wednesday</h3>
+      <div class="time-slot" aria-label="Available from 7 AM to 4 PM">7:00 AM - 4:00 PM</div>
+    </div>
+
+    <div class="day-card" tabindex="0" aria-labelledby="thu-title" role="region">
+      <div class="bike-icon" aria-hidden="true">🏍️🚗</div>
+      <h3 id="thu-title">Thursday</h3>
+      <div class="time-slot" aria-label="Available from 7 AM to 5 PM">7:00 AM - 5:00 PM</div>
+    </div>
+
+    <div class="day-card" tabindex="0" aria-labelledby="fri-title" role="region">
+      <div class="bike-icon" aria-hidden="true">🏍️🚗</div>
+      <h3 id="fri-title">Friday</h3>
+      <div class="time-slot" aria-label="Available from 7 AM to 4 PM">7:00 AM - 4:00 PM</div>
+    </div>
+  </div>
+
+  <form id="whatsappForm" aria-label="Send message via WhatsApp">
+    <label for="message">Send us a message on WhatsApp:</label>
+    <textarea id="message" placeholder="Type your message here..." required></textarea>
+    <button type="submit" aria-label="Send WhatsApp message">Send via WhatsApp</button>
+  </form>
+
+
+
+  <script>
+    document.getElementById('whatsappForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const message = encodeURIComponent(document.getElementById('message').value.trim());
+      const phoneNumber = '94771234567'; // Your WhatsApp number here without "+" or spaces
+      if(!message) {
+        alert('Please enter a message before sending.');
+        return;
+      }
+      const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
+      window.open(whatsappURL, '_blank', 'noopener');
+    });
+  </script>
+
+</body>
+</html>
